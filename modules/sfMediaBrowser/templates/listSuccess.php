@@ -25,7 +25,7 @@
 </div>
 
 
-<h2><?php echo sprintf(__('Current directory : %s'), $display_dir) ?></h2>
+<h1 id="sf_media_browser_title"><?php echo sprintf(__('Current directory : %s'), '<small>' . $display_dir . '</small>') ?></h1>
 
 
 <ul id="sf_media_browser_list">
@@ -43,7 +43,7 @@
             <div class="icon">
                 <?php echo link_to(image_tag('/sfMediaBrowserPlugin/images/icons/folder.png'), $current_route, array_merge($sf_data->getRaw('current_params'), array('dir' => $relative_dir . '/' . $dir)), array('title' => $dir)) ?>
             </div>
-            <label class="name"><?php echo $dir ?></label>
+            <label class="name" title="<?php echo $dir ?>"><?php echo $dir ?></label>
             <div class="action"><?php echo link_to('delete', 'sf_media_browser_dir_delete', array('sf_method' => 'delete', 'directory' => urlencode($relative_dir . '/' . $dir)), array('class' => 'delete', 'title' => sprintf(__('Delete folder "%s"'), $dir))) ?></div>
         </li>
     <?php endforeach ?>
