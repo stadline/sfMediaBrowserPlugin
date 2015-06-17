@@ -35,6 +35,7 @@
             <div class="icon">
                 <?php echo link_to(image_tag('/sfMediaBrowserPlugin/images/icons/up.png'), $current_route, array_merge($sf_data->getRaw('current_params'), array('dir' => $parent_dir))) ?>
             </div>
+            <label class="name" title="..">..</label>
         </li>
     <?php endif ?>
 

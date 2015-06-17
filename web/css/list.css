@@ -4,8 +4,7 @@
 }
 
 #sf_media_browser_forms {
-    width: 300px;
-    margin-left: 10px;
+    width: 290px;
     float: right;
 }
 
@@ -15,8 +14,9 @@
 }
 
 #sf_media_browser_list {
-    margin-left: -10px;
-    margin-right: -10px;
+    margin: 20px;
+    margin-left: -10px !important;
+    margin-right: 300px !important;
     list-style: none;
 }
 
@@ -24,10 +24,10 @@
     display: inline-block;
     text-align: center;
     vertical-align: top;
-    width: 150px;
+    width: 140px;
     height: 100px;
-    margin-right: 10px;
-    margin-left: 10px;
+    margin-right: 10px !important;
+    margin-left: 10px !important;
 }
 
 #sf_media_browser_list label {

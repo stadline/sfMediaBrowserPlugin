@@ -13,10 +13,15 @@ class BasesfMediaBrowserActions extends sfActions
     public function preExecute()
     {
         // Configured root dir
-        $this->root_dir = sfconfig::get('app_sf_media_browser_root_dir');
+        $this->root_dir = $this->getRootDir();
+        $full_dir = sfConfig::get('sf_web_dir') . '/' . $this->root_dir;
+
+        if (!file_exists($full_dir)) {
+            mkdir($full_dir);
+        }
 
         // Calculated root path
-        $this->root_path = realpath(sfConfig::get('sf_web_dir') . '/' . $this->root_dir);
+        $this->root_path = realpath($full_dir);
         $this->requested_dir = urldecode($this->getRequestParameter('dir'));
         $this->requested_dir = $this->checkPath($this->root_path . '/' . $this->requested_dir) ? preg_replace('`(/)+`', '/', $this->requested_dir) : '/';
 
@@ -213,6 +218,11 @@ class BasesfMediaBrowserActions extends sfActions
     }
 
 # Protected
+
+    protected function getRootDir()
+    {
+        return sfconfig::get('app_sf_media_browser_root_dir');
+    }
 
     protected function checkPath($path)
     {
