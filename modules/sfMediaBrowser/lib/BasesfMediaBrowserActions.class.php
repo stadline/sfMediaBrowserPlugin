@@ -208,7 +208,7 @@ class BasesfMediaBrowserActions extends sfActions
         $this->checkPath($this->root_path . '/' . $path);
         $file = $this->createFileObject($this->root_path . '/' . $path);
         $file->delete();
-        $this->getUser()->setFlash('notice', __('The file was succesfully deleted.'));
+        $this->getUser()->setFlash('notice', __('The file was successfully deleted.'));
         $this->redirect($request->getReferer());
     }
 
