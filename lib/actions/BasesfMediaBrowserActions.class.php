@@ -58,7 +58,7 @@ class BasesfMediaBrowserActions extends sfActions
 
     public function executeSelect(sfWebRequest $request)
     {
-        $this->setLayout(dirname(__FILE__) . '/../templates/popupLayout');
+        $this->setLayout(dirname(__FILE__) . '/../../modules/sfMediaBrowser/templates/popupLayout');
         $this->setTemplate('list');
         $this->executeList($request);
     }

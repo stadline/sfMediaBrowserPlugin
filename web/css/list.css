@@ -10,7 +10,13 @@
 
 #sf_media_browser_forms fieldset {
     margin-top: 1em;
-    margin-bottom: 2em;
+    margin-bottom: 3em;
+}
+
+#sf_media_browser_forms li {
+    list-style: none;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
 }
 
 #sf_media_browser_forms:empty {
@@ -25,10 +31,10 @@
     margin: 20px;
     margin-left: -10px !important;
     margin-right: 300px !important;
-    list-style: none;
 }
 
-#sf_media_browser_list > li {
+#sf_media_browser_list li {
+    list-style: none;
     display: inline-block;
     text-align: center;
     vertical-align: top;
@@ -77,6 +83,7 @@
     width: 16px;
     height: 16px;
     background: transparent url('../images/icons-16/trash.png') no-repeat;
+    overflow: hidden;
 }
 
 label.name span#validate {
@@ -85,6 +92,7 @@ label.name span#validate {
     width: 16px;
     height: 16px;
     background: transparent url('../images/icons-16/ok.png') no-repeat;
+    overflow: hidden;
 }
 
 label.name span#cancel {
@@ -93,4 +101,5 @@ label.name span#cancel {
     width: 16px;
     height: 16px;
     background: transparent url('../images/icons-16/cancel.png') no-repeat;
+    overflow: hidden;
 }

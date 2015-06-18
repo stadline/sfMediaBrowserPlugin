@@ -52,8 +52,11 @@ function sfMediaBrowserWindowManagerObject(params) {
 }
 
 sfMediaBrowserWindowManagerObject.prototype.callback = function(value) {
-  this.getTarget().value = value;
-  this.getTarget().onchange();
+  var target = this.getTarget();
+  target.value = value;
+  if (target.onchange) {
+    target.onchange();
+  }
   this.popup.close();
 }
 sfMediaBrowserWindowManagerObject.prototype.getTarget = function() {
