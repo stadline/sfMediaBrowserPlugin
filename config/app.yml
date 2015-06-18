@@ -32,26 +32,32 @@ all:
         - /sfMediaBrowserPlugin/js/popup.js
     file_types:                           # define file_types is usefull for displaying icons in browser
       document:                           # type of file (also used as default icon name)
-        extensions: [doc, xls, xcf, ai]   # extensions associated to this type
+        extensions: [doc, docx, rtf]      # extensions associated to this type
         icon:       doc                   # optional icon file name, without extension
+      spreadsheet:
+        extensions: [xls, xlsx, csv, tsv]
+        icon:       xls
+      presentation:
+        extensions: [ppt, pptx]
+        icon:       ppt
       image:                              
-        extensions: [png, jpg, jpeg, gif] 
+        extensions: [bmp, png, jpg, jpeg, gif, xcf, svg, ai, psd]
       pdf:
         extensions: [pdf]
       bin:
-        extensions: [bin, exe, sh, bat, deb, yum]
+        extensions: [bin, exe, sh, bat, deb, yum, so, dll]
       video:
-        extensions: [wmv, avi, mpg, mpeg, flv, mp4]
+        extensions: [wmv, avi, mpg, mpeg, flv, mp4, mkv]
       audio:
-        extensions: [ogg, mp3, flac, wma, cda]
+        extensions: [wav, ogg, mp3, flac, wma, cda]
       text:
         extensions: [txt]
       tarball:
-        extensions: [tar, gz, zip, bzip, gzip, rar, 7z]
+        extensions: [tar, bz2, gz, zip, bzip, gzip, rar, 7z]
       code:
         extensions: [htm, html, css, js]
       php:
-        extensions: [php]
+        extensions: [php, php1, php2, php3, php4, php5, php6, php7]
         icon:       code
   sfImageTransformPlugin:       # see sfImageTransformPlugin for more info.
     mime_type:
