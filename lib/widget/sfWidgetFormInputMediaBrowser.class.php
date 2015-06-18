@@ -64,7 +64,7 @@ class sfWidgetFormInputMediaBrowser extends sfWidgetForm
     // Get default dir for popup window
     $dir = $value
          ? dirname($value)
-         : sfConfig::get('app_sf_media_browser_root_dir').'/'.$this->getOption('dir');
+         : sfMediaBrowserUtils::getRootDir().'/'.$this->getOption('dir');
     
     $url = $this->context->getRouting()->generate('sf_media_browser_select', array('dir' => $dir));
 

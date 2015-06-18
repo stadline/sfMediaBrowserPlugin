@@ -13,7 +13,7 @@ class BasesfMediaBrowserActions extends sfActions
     public function preExecute()
     {
         // Configured root dir
-        $this->root_dir = $this->getRootDir();
+        $this->root_dir = sfMediaBrowserUtils::getRootDir();
         $full_dir = sfConfig::get('sf_web_dir') . '/' . $this->root_dir;
 
         if (!file_exists($full_dir)) {
@@ -70,6 +70,7 @@ class BasesfMediaBrowserActions extends sfActions
         if ($form->isValid()) {
             $new_dir = $form->getValue('directory') . '/' . $form->getValue('name');
             $this->checkPath($new_dir);
+
             $created = @mkdir($new_dir);
             @chmod($new_dir, 0777);
 
@@ -224,11 +225,6 @@ class BasesfMediaBrowserActions extends sfActions
     }
 
 # Protected
-
-    protected function getRootDir()
-    {
-        return sfconfig::get('app_sf_media_browser_root_dir');
-    }
 
     protected function getUploadForm($defaults = array())
     {

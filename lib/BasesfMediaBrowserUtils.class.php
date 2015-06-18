@@ -14,7 +14,7 @@
  * @author Vincent Agnano <vincent.agnano@particul.es>
  *
  */
-class sfMediaBrowserUtils
+class BasesfMediaBrowserUtils
 {
   protected $type_extension = array(
     'document' => array('doc', 'xls', ''),
@@ -114,6 +114,11 @@ class sfMediaBrowserUtils
   {
     return '/sfMediaBrowserPlugin/images/icons';
   }
+
+  static public function getRootDir()
+  {
+    return sfconfig::get('app_sf_media_browser_root_dir');
+  }
   
   
   static public function deleteRecursive($path)
@@ -121,12 +126,12 @@ class sfMediaBrowserUtils
     $files = sfFinder::type('file')->in($path);
     foreach($files as $file)
     {
-      unlink($file);
+      @unlink($file);
     }
     $dirs = array_reverse(sfFinder::type('dir')->in($path));
     foreach($dirs as $dir)
     {
-      rmdir($dir);
+      @rmdir($dir);
     }
     return @rmdir($path);
   }
