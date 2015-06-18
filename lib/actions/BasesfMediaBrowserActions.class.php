@@ -36,7 +36,7 @@ class BasesfMediaBrowserActions extends sfActions
         // dir relative to root_dir
         $this->relative_dir = $this->requested_dir;
         // dir relative to /web
-        $this->relative_url = $this->root_dir . $this->requested_dir;
+        $this->relative_url = $this->requested_dir != '/' ? $this->root_dir . $this->requested_dir : $this->root_dir;
         // User dispay dir
         $this->display_dir = $display_dir ? $display_dir : '/';
         // browser parent dir
