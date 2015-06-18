@@ -52,8 +52,8 @@ class BasesfMediaBrowserActions extends sfActions
         $this->current_params = $request->getGetParameters();
 
         // forms
-        $this->upload_form = new sfMediaBrowserUploadForm(array('directory' => $this->display_dir));
-        $this->dir_form = new sfMediaBrowserDirectoryForm(array('directory' => $this->display_dir));
+        $this->upload_form = $this->getUploadForm(array('directory' => $this->display_dir));
+        $this->dir_form = $this->getDirectoryForm(array('directory' => $this->display_dir));
     }
 
     public function executeSelect(sfWebRequest $request)
@@ -65,11 +65,11 @@ class BasesfMediaBrowserActions extends sfActions
 
     public function executeCreateDirectory(sfWebRequest $request)
     {
-        $form = new sfMediaBrowserDirectoryForm();
+        $form = $this->getDirectoryForm();
         $form->bind($request->getParameter('directory'));
         if ($form->isValid()) {
-            $real_path = $form->getValue('directory');
             $new_dir = $form->getValue('directory') . '/' . $form->getValue('name');
+            $this->checkPath($new_dir);
             $created = @mkdir($new_dir);
             @chmod($new_dir, 0777);
 
@@ -103,7 +103,7 @@ class BasesfMediaBrowserActions extends sfActions
     {
         $upload = $request->getParameter('upload');
         $this->checkPath($this->root_path . '/' . $upload['directory']);
-        $form = new sfMediaBrowserUploadForm();
+        $form = $this->getUploadForm();
         $form->bind($upload, $request->getFiles('upload'));
         if ($form->isValid()) {
             $post_file = $form->getValue('file');
@@ -228,6 +228,16 @@ class BasesfMediaBrowserActions extends sfActions
     protected function getRootDir()
     {
         return sfconfig::get('app_sf_media_browser_root_dir');
+    }
+
+    protected function getUploadForm($defaults = array())
+    {
+        return new sfMediaBrowserUploadForm($defaults);
+    }
+
+    protected function getDirectoryForm($defaults = array())
+    {
+        return new sfMediaBrowserDirectoryForm($defaults);
     }
 
     protected function checkPath($path)

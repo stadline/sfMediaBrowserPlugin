@@ -13,6 +13,14 @@
     margin-bottom: 2em;
 }
 
+#sf_media_browser_forms:empty {
+    display: none;
+}
+
+#sf_media_browser_forms:empty ~ #sf_media_browser_list {
+    margin-right: -10px !important;
+}
+
 #sf_media_browser_list {
     margin: 20px;
     margin-left: -10px !important;
@@ -28,6 +36,16 @@
     height: 100px;
     margin-right: 10px !important;
     margin-left: 10px !important;
+}
+
+#sf_media_browser_list > li.placeholder {
+    display: none;
+}
+
+#sf_media_browser_list > li.placeholder:only-child {
+    display: block;
+    text-align: left;
+    font-style: italic;
 }
 
 #sf_media_browser_list label {

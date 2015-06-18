@@ -1,34 +1,19 @@
 <?php sfMediaBrowserUtils::loadAssets('list') ?>
 <?php use_helper('I18N') ?>
-<?php $upload_form->getWidgetSchema()->setFormFormatterName('list') ?>
-<?php $dir_form->getWidgetSchema()->setFormFormatterName('list') ?>
 
-<div id="sf_media_browser_user_message"></div>
-
-<div id="sf_media_browser_forms">
-    <fieldset id="sf_media_browser_upload">
-        <legend><?php echo __('Upload a file') ?></legend>
-        <form action="<?php echo url_for('sf_media_browser_file_create') ?>" method="post" enctype="multipart/form-data">
-            <?php echo $upload_form ?>
-            <input type="submit" class="submit" value="<?php echo __('Save') ?>" />
-        </form>
-    </fieldset>
-
-    <fieldset id="sf_media_browser_mkdir">
-        <legend><?php echo __('Create a new directory') ?></legend>
-        <form action="<?php echo url_for('sf_media_browser_dir_create') ?>" method="post">
-            <?php echo $dir_form ?>
-            <input type="submit" class="submit" value="<?php echo __('Create') ?>" />
-        </form>
-    </fieldset>
-    <div class="clear"></div>
-</div>
+<div id="sf_media_browser_forms"><!--
+    --><?php include_partial('sfMediaBrowser/uploadForm', array('upload_form' => $upload_form)) ?><!--
+    --><?php include_partial('sfMediaBrowser/directoryForm', array('dir_form' => $dir_form)) ?><!--
+--></div>
 
 
 <h1 id="sf_media_browser_title"><?php echo sprintf(__('Current directory : %s'), '<small>' . $display_dir . '</small>') ?></h1>
 
 
 <ul id="sf_media_browser_list">
+    <li class="placeholder">
+        <?php echo __('The directory is empty.') ?>
+    </li>
 
     <?php if ($parent_dir): ?>
         <li class="up">
