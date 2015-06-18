@@ -72,6 +72,10 @@
         <source>The directory could not be created.</source>
         <target>Le répértoire n'a pas pu être créé.</target>
       </trans-unit>
+      <trans-unit id="18">
+        <source>The file could not be uploaded.</source>
+        <target>Le fichier n'a pas pu être chargé.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -48,6 +48,11 @@ all:
         extensions: [txt]
       tarball:
         extensions: [tar, gz, zip, bzip, gzip, rar, 7z]
+      code:
+        extensions: [htm, html, css, js]
+      php:
+        extensions: [php]
+        icon:       code
   sfImageTransformPlugin:       # see sfImageTransformPlugin for more info.
     mime_type:
       auto_detect:  true
