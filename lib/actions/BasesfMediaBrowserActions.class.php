@@ -113,6 +113,12 @@ class BasesfMediaBrowserActions extends sfActions
             $fullname = $ext ? $name . '.' . $ext : $name;
             $destination_dir = realpath($this->root_path . '/' . $upload['directory']);
 
+            // prevent php uploading
+            if (sfMediaBrowserUtils::getTypeFromExtension($ext) == 'php') {
+                $this->getUser()->setFlash('error', __('The file could not be uploaded.'));
+                $this->redirect($request->getReferer());
+            }
+
             // thumbnail
             if (sfConfig::get('app_sf_media_browser_thumbnails_enabled', false) && sfMediaBrowserUtils::getTypeFromExtension($ext) == 'image') {
                 $this->generateThumbnail($post_file->getTempName(), $fullname, $destination_dir);
