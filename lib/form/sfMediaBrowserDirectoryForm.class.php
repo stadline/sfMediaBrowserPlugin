@@ -22,7 +22,7 @@ class sfMediaBrowserDirectoryForm extends sfForm
       'name'      => new sfValidatorString(array('trim' => true)),
       'directory' => new sfValidatorMediaBrowserDirectory(array(
               'relative'  => true,
-              'root'      => sfConfig::get('sf_web_dir').'/'.sfMediaBrowserUtils::getRootDir(),
+              'root'      => sfMediaBrowserUtils::getRootDir(),
               'root_allowed' => true,
       )),
     ));

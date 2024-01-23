@@ -17,12 +17,22 @@ class BasesfMediaBrowserActions extends sfActions
         $this->createDir(sfConfig::get('sf_web_dir'), $this->root_dir);
 
         // Calculated root path
-        $this->root_path = realpath(sfConfig::get('sf_web_dir') . $this->root_dir);
+        $this->root_path = $this->getRootPath();
         $this->requested_dir = urldecode($this->getRequestParameter('dir'));
         $this->requested_dir = $this->checkPath($this->root_path . '/' . $this->requested_dir) ? preg_replace('`(/)+`', '/', $this->requested_dir) : '/';
 
         // Load I18N helper
         sfContext::getInstance()->getConfiguration()->loadHelpers(array('I18N'));
+    }
+
+    protected function getRootPath()
+    {
+        return realpath(sfConfig::get('sf_web_dir') . $this->root_dir);
+    }
+
+    protected function getWebPath($path)
+    {
+        return $this->requested_dir != '/' ? $path . $this->requested_dir : $path;
     }
 
     public function executeList(sfWebRequest $request)
@@ -32,7 +42,8 @@ class BasesfMediaBrowserActions extends sfActions
         // dir relative to root_dir
         $this->relative_dir = $this->requested_dir;
         // dir relative to /web
-        $this->relative_url = $this->requested_dir != '/' ? $this->root_dir . $this->requested_dir : $this->root_dir;
+        $this->relative_url = $this->getWebPath($this->root_dir);
+
         // User dispay dir
         $this->display_dir = $display_dir ? $display_dir : '/';
         // browser parent dir
@@ -278,9 +289,9 @@ class BasesfMediaBrowserActions extends sfActions
         ;
     }
 
-    protected function createDir($web_dir, $root_dir)
+    protected function createDir($web_dir, $root_dir, $fromWeb = false)
     {
-        $dir = $web_dir;
+        $dir = $fromWeb ? $web_dir : '';
 
         foreach (explode(DIRECTORY_SEPARATOR, $root_dir) as $dirPart) {
             $dir .= $dirPart . DIRECTORY_SEPARATOR;
