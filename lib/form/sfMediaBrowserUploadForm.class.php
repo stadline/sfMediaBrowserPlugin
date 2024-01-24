@@ -23,7 +23,7 @@ class sfMediaBrowserUploadForm extends sfForm
       'file'      => new sfValidatorFile(array('path' => $this->getValue('directory'))),
       'directory' => new sfValidatorMediaBrowserDirectory(array(
                       'relative'  => true,
-                      'root'      => sfConfig::get('sf_web_dir').'/'.sfMediaBrowserUtils::getRootDir(),
+                      'root'      => sfMediaBrowserUtils::getRootDir(),
                       'root_allowed'  => true,
       )),
     ));
