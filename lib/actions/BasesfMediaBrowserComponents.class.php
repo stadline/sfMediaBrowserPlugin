@@ -11,6 +11,6 @@ class BasesfMediaBrowserComponents extends sfComponents
         $type = sfMediaBrowserUtils::getTypeFromExtension(sfMediaBrowserUtils::getExtensionFromFile($this->file_url));
         $class = ($type == 'image') ? 'sfMediaBrowserImageObject' : 'sfMediaBrowserFileObject';
 
-        $this->file = new $class($this->file_url);
+        $this->file = new $class($this->file_url, sfConfig::get('app_sf_media_browser_root_dir'));
     }
 }

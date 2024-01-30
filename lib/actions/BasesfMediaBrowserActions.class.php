@@ -264,7 +264,7 @@ class BasesfMediaBrowserActions extends sfActions
     {
         $class = sfMediaBrowserUtils::getTypeFromExtension(pathinfo($file, PATHINFO_EXTENSION)) == 'image' ? 'sfMediaBrowserImageObject' : 'sfMediaBrowserFileObject'
         ;
-        return new $class($file);
+        return new $class($file, sfConfig::get('app_sf_media_browser_root_dir'));
     }
 
     protected function getDirectories($path)

@@ -33,7 +33,6 @@ class sfMediaBrowserFileObject
   public function __construct($file, $root_path = null)
   {
     $this->root_path = $root_path ? realpath($root_path) : realpath(sfConfig::get('sf_web_dir'));
-    
     $this->directory_separator = DIRECTORY_SEPARATOR;
 
     // $file is absolute
@@ -45,6 +44,8 @@ class sfMediaBrowserFileObject
     {
       $this->file_url = $file;
     }
+
+    $this->file_url = $this->cleanFileUrlFromRootPath();
   }
   
 
@@ -181,4 +182,25 @@ class sfMediaBrowserFileObject
     }
     return false;
   }
+
+    /**
+     * Remove root_path end from file start
+     * $file = /uploads/crsmr-normandie-haute/cdsmr-seine-maritime/foyer-rural-de-isneauville/attestation-adhesion-2401220909.pdf"
+     * $root_path = /home/assos/www/uploads/
+     * We have to remove the "uploads" duplicate
+     */
+    private function cleanFileUrlFromRootPath()
+    {
+        $root_path_directories = explode($this->directory_separator, $this->root_path);
+        $file_directories = explode($this->directory_separator, $this->file_url);
+        $directoryIndex = 0;
+        foreach ($root_path_directories as $root_path_directory) {
+            if ($root_path_directory == $file_directories[$directoryIndex]) {
+                unset($file_directories[$directoryIndex]);
+                $directoryIndex++;
+            }
+        }
+
+        return implode($this->directory_separator, $file_directories);
+    }
 }
