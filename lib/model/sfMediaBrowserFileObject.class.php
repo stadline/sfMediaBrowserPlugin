@@ -96,10 +96,18 @@ class sfMediaBrowserFileObject
     return pathinfo($this->getUrl(), PATHINFO_EXTENSION);
   }
 
+    public function getFilePath()
+    {
+        return str_replace(
+            sfConfig::get('app_sf_media_browser_web_dir'),
+            '',
+            $this->file_url
+        );
+    }
 
   public function getPath()
   {
-    return realpath($this->getRootPath().'/'.$this->getUrl());
+    return realpath($this->getRootPath().'/'.$this->getFilePath());
   }
   
   
