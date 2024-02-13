@@ -1,6 +1,6 @@
 <?php use_helper('I18N') ?>
 <div class="icon">
-    <?php echo link_to(image_tag($file->getIcon()), $file->getUrl(), array('target' => '_blank')) ?>
+    <a href="<?php echo $file->getUrl(); ?>" target="_blank"><?php echo image_tag($file->getIcon()); ?></a>
 </div>
 <label class="name" title="<?php echo $file->getName() ?>"><?php echo $file->getName() ?></label>
 <div class="action">
