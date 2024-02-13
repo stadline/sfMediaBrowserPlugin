@@ -45,7 +45,8 @@ class sfMediaBrowserFileObject
       $this->file_url = $file;
     }
 
-    $this->file_url = $this->cleanFileUrlFromRootPath();
+      $webDir = rtrim(sfConfig::get('app_sf_media_browser_web_dir'), '/') . '/';
+      $this->file_url = $webDir . $this->cleanFileUrlFromRootPath();
   }
   
 
@@ -193,6 +194,7 @@ class sfMediaBrowserFileObject
     {
         $root_path_directories = explode($this->directory_separator, $this->root_path);
         $file_directories = explode($this->directory_separator, $this->file_url);
+
         $directoryIndex = 0;
         foreach ($root_path_directories as $root_path_directory) {
             if ($root_path_directory == $file_directories[$directoryIndex]) {
