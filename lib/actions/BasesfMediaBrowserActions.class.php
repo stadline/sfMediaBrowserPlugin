@@ -107,7 +107,7 @@ class BasesfMediaBrowserActions extends sfActions
         $this->redirect($request->getReferer());
     }
 
-    public function executeCreateFile(sfWebRequest $request)
+    public function executeCreateFile(sfWebRequest $request, $blocRedirect = false)
     {
         $upload = $request->getParameter('upload');
         $this->checkPath($this->root_path . '/' . $upload['directory']);
@@ -137,7 +137,9 @@ class BasesfMediaBrowserActions extends sfActions
         } else {
             $this->getUser()->setFlash('error', __('The file could not be uploaded.'));
         }
-        $this->redirect($request->getReferer());
+        if (!$blocRedirect) {
+            $this->redirect($request->getReferer());
+        }
     }
 
     /**
